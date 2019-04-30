@@ -1,33 +1,13 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company:
-// Engineer:
-//
-// Create Date: 04/25/2019 03:51:36 PM
-// Design Name:
-// Module Name: FPAdder
-// Project Name:
-// Target Devices:
-// Tool Versions:
-// Description:
-//
-// Dependencies:
-//
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-//
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
 
     input reset, clk;
     input op; // 0 = addition, 1 = subtraction
     input [31:0] a, b;
-    output outSign;
-    output [7:0] outExp;
-    output [22:0] outFract;
+    output reg outSign;
+    output reg [7:0] outExp;
+    output reg [22:0] outFract;
 
     reg [2:0] state, next_state;
 
@@ -59,6 +39,8 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
     reg fiveLeft;
 
     reg [3:0] eightCase;
+    
+    reg [31:0] roundedVal;
 
     localparam ADD = 1'b0, SUB = 1'b1;
 
@@ -67,9 +49,9 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
 
     TwosComplement #(.SIZE(5)) twoB(.in({9'b0, bFract}), .out(bFractComp));
     VariableCLA #(.SIZE(5)) fourS(.a({9'b0, aFract}), .b({9'b0, aFract}), .c_in(1'b0), .s(regSTemp), .c_out(fiveCOut));
-    TwosComplement #(.SIZE(5)) twoB(.in({9'b0, regS}), .out({9'b0, regSTwosComp}));
+    TwosComplement #(.SIZE(5)) fourComp(.in({9'b0, regS}), .out({9'b0, regSTwosComp}));
     NormalizeReg fiveNormalize(.pre(regFiveS), .res(normalizedFiveS), .shiftNum(fiveBitShift));
-    VariableCLA #(.SIZE(5)) sevenRound(.a({9'b0, regFiveS}), .b(31'b0, 1'b1), .c_in(1'b0), .s(roundedVal), .c_out(roundCOut));
+    VariableCLA #(.SIZE(5)) sevenRound(.a({9'b0, regFiveS}), .b({31'b0, 1'b1}), .c_in(1'b0), .s(roundedVal), .c_out(roundCOut));
 
     always @(posedge clk or negedge reset) begin
 
@@ -83,6 +65,7 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
     end
 
 
+    integer i;
     always @(posedge clk) begin
 
         case(state)
@@ -142,7 +125,7 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
                 setComp = 1;
               end
 
-              next_state <= SHIFTB
+              next_state <= SHIFTB;
             end
 
             // Step 3
@@ -196,7 +179,6 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
               // Finish initialization from Step 3
               sticky = 0;
 
-              integer i;
               for(i = 22; i > totalShift; i = i - 1) begin
                 if(i == 22) begin
                   guard = shiftedOut[i];
@@ -217,16 +199,16 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
               regS = regSTemp[22:0];
 
               // This can only possibly be hit when totalShift = 0
-              if(aSign != bSign && regS[22] && !cOut) begin
+              if(aSign != bSign && regS[22] && !fiveCOut) begin
                 regS = regSTwosComp;
               end
 
               // Step 5
-              if(aSign == bSign && !cOut) begin
+              if(aSign == bSign && !fiveCOut) begin
                 regFiveS = {1'b1, regS[22:1]};
                 fiveLeft = 0;
               end
-              else if(cOut) begin
+              else if(fiveCOut) begin
                 if(!regFiveS[22]) begin
                   regFiveS = normalizedFiveS;
                 end
@@ -252,7 +234,7 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
               if(fiveLeft) begin
                 if(fiveBitShift > 1) begin
                   round = 0;
-                  shift = 0;
+                  sticky = 0;
                 end
                 else begin
                   round = guard;
@@ -264,12 +246,12 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
                 sticky = guard | round | sticky;
               end
 
-              next_state <= ROUND_COMPUTE;
+              next_state <= ROUND_COMP;
 
             end
 
             // Steps 7, 8
-            ROUND_COMPUTE: begin
+            ROUND_COMP: begin
 
               // Step 7: Round to nearest even
               if((round && regFiveS[22]) || (round && sticky)) begin
