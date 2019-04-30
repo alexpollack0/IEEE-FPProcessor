@@ -20,13 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FPAdder(reset, clk, a, b, op, res);
+module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
 
     input reset, clk;
     input op; // 0 = addition, 1 = subtraction
     input [31:0] a, b;
     output outSign;
-    output [31:0] res;
+    output [7:0] outExp;
+    output [22:0] outFract;
 
     reg [2:0] state, next_state;
 
@@ -42,13 +43,16 @@ module FPAdder(reset, clk, a, b, op, res);
 
     reg swapped;
     reg setComp;
-    reg [22:0] shiftRegB; // TODO: This needs to be a p-bit register, is 23 bits correct?
+    reg [22:0] shiftRegB;
     reg [22:0] shiftedOut; // TODO: Determine width
     reg [31:0] regSTemp;
     reg [22:0] regS;
     reg [22:0] regSTwosComp;
     reg [22:0] regFiveS;
+    reg [22:0] normalizedFiveS;
+    wire [5:0] fiveBitShift;
     reg fiveCOut;
+    wire roundCOut;
 
     reg d, totalShift; // TODO: Determine width
     reg guard, round, sticky;
@@ -61,19 +65,32 @@ module FPAdder(reset, clk, a, b, op, res);
     localparam INIT = 3'b000, SWAP_COMP = 3'b001, SHIFTB = 3'b010, SHIFT_DIRECT = 3'b011,
                 ADD_SHIFT = 3'b100, ADJUST =3'b101, ROUND_COMP = 3'b110, DONE = 3'b111;
 
-    TwosComplement #(.SIZE(5))twoB(.in({9'b0, bFract}), .out(bFractComp));
-
+    TwosComplement #(.SIZE(5)) twoB(.in({9'b0, bFract}), .out(bFractComp));
     VariableCLA #(.SIZE(5)) fourS(.a({9'b0, aFract}), .b({9'b0, aFract}), .c_in(1'b0), .s(regSTemp), .c_out(fiveCOut));
+    TwosComplement #(.SIZE(5)) twoB(.in({9'b0, regS}), .out({9'b0, regSTwosComp}));
+    NormalizeReg fiveNormalize(.pre(regFiveS), .res(normalizedFiveS), .shiftNum(fiveBitShift));
+    VariableCLA #(.SIZE(5)) sevenRound(.a({9'b0, regFiveS}), .b(31'b0, 1'b1), .c_in(1'b0), .s(roundedVal), .c_out(roundCOut));
 
-    TwosComplement #(.SIZE(5))twoB(.in({9'b0, regS}), .out({9'b0, regSTwosComp}));
+    always @(posedge clk or negedge reset) begin
 
-    always @(clk) begin
+      if(!reset) begin
+        state <= INIT;
+      end
+      else begin
+        state <= next_state;
+      end
+
+    end
+
+
+    always @(posedge clk) begin
 
         case(state)
 
             // Initialize the registers holding the sign, exponent, and fractional values
             // Step 0
             INIT: begin
+
               aSign <= a[31];
               bSign <= b[31];
               aExp <= a[30:23];
@@ -81,6 +98,15 @@ module FPAdder(reset, clk, a, b, op, res);
               aFract <= a[22:0];
               bFract <= b[22:0];
               next_state <= SWAP_COMP;
+
+              outExp <= 0;
+
+              // TODO: Must take twos complement if subtraction
+              if(op) begin
+                //bFract <= bFractComp;
+                  bFract = ~(bFract) + 1;
+              end
+
             end
 
             // If aExp < bExp, swap the operands
@@ -200,18 +226,23 @@ module FPAdder(reset, clk, a, b, op, res);
                 regFiveS = {1'b1, regS[22:1]};
                 fiveLeft = 0;
               end
-              else begin
-                // On first left shift, fill in low-order position with the guard bit
-                regFiveS = {S[21:0], guard};
-
-                // TODO: Shift S left until it is normalized
-                // Shifted value will be placed in regFiveS
-                // Number of bits shifted will be in fiveBitShift
+              else if(cOut) begin
+                if(!regFiveS[22]) begin
+                  regFiveS = normalizedFiveS;
+                end
 
                 fiveLeft = 1;
               end
 
-              // TODO: Adjust the exponent of the result
+              // Adjust the exponent of the result
+              if(fiveLeft) begin
+                outExp = -fiveBitShift;
+              end
+              else begin
+                outExp = fiveBitShift;
+              end
+
+              next_state <= ADJUST;
 
             end
 
@@ -219,9 +250,13 @@ module FPAdder(reset, clk, a, b, op, res);
             ADJUST: begin
 
               if(fiveLeft) begin
-                if(fiveBitShift > 0) begin
+                if(fiveBitShift > 1) begin
                   round = 0;
                   shift = 0;
+                end
+                else begin
+                  round = guard;
+                  sticky = round | sticky;
                 end
               end
               else begin
@@ -229,12 +264,18 @@ module FPAdder(reset, clk, a, b, op, res);
                 sticky = guard | round | sticky;
               end
 
+              next_state <= ROUND_COMPUTE;
+
             end
 
             // Steps 7, 8
             ROUND_COMPUTE: begin
 
               // Step 7: Round to nearest even
+              if((round && regFiveS[22]) || (round && sticky)) begin
+                // Add 1
+                regFiveS <= roundedVal[22:0];
+              end
 
               // Step 8
               if(aSign != bSign) begin
@@ -255,10 +296,12 @@ module FPAdder(reset, clk, a, b, op, res);
                 outSign = aSign;
               end
 
+              next_state <= DONE;
+
             end
 
             DONE: begin
-
+              outFract <= regFiveS;
             end
 
         endcase
