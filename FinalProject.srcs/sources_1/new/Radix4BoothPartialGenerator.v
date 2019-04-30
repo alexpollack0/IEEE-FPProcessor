@@ -25,7 +25,7 @@ module Radix4BoothPartialGenerator(
     wire [23:0] multiplicand_complement;
     
     assign multiplier_extended = {multiplier_extended, 1'b0};
-    TwosComplement neg(.in(multiplicand), .out(multiplicand_complement));
+    TwosComplement #(.SIZE()) neg(.in({{8{multiplicand[23]}}, multiplicand}), .out({8'b0,multiplicand_complement}));
     
     reg [24:0] partials [15:0]; 
     
