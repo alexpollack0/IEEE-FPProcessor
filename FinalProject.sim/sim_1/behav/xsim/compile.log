@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/LeadingZeroCount.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LeadingZeroCount
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/NormalizeReg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module NormalizeReg
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sim_1/new/NormalizeReg_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module NormalizeReg_tb

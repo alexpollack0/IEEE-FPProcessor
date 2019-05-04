@@ -1,34 +1,26 @@
 `timescale 1ns / 1ps
 
-module NormalizeReg (
-    input [2**SIZE-1:0] mantissa_in,
-    output [2**SIZE-1:0] mantissa_out,
-    output [SIZE:0] shiftNum
+module NormalizeReg #(BIT_WIDTH=1) (
+    input [BIT_WIDTH-1:0] mantissa_in,
+    output [BIT_WIDTH-1:0] mantissa_out,
+    output [$clog2(BIT_WIDTH)-1:0] shiftNum
     );
 
-    parameter SIZE = 1;
+    wire [2*BIT_WIDTH-1:0] extended_mantissa;
 
-    reg [SIZE-1:0] i;
-    reg [SIZE-1:0] to_shift;
-    wire [SIZE-1:0] temp;
-    wire [2*SIZE-1:0] extended_mantissa;
-    wire [2**SIZE-1:0] allZeros;
+    assign extended_mantissa[2*BIT_WIDTH-1 -: BIT_WIDTH] = {BIT_WIDTH{1'b0}};
 
-    always @(mantissa_in) begin
-        to_shift = 0;
-        for (i = SIZE; i >=0; i=i-1) begin
-            if (mantissa_in[i] == 1) begin
-                if (to_shift == 0) to_shift <= i;
-            end
-        end
+    genvar i;
+    for (i = 0; i < BIT_WIDTH; i=i+1) begin
+        assign extended_mantissa[i] = mantissa_in[(BIT_WIDTH-1)-i];
     end
-
-    assign extended_mantissa = {mantissa_in,{SIZE{1'b0}}};
-
-    assign mantissa_out = extended_mantissa[to_shift -: 2**SIZE];
-
-    TwosComplement #(.SIZE(SIZE)) comp(.in(to_shift), .out(temp));
-
-    VariableCLA #(.SIZE(SIZE)) cla(.a(2**SIZE), .b(temp), .c_in(1'b0), .s(shiftNum));
+    
+    genvar j;
+    for (j = 0; j < BIT_WIDTH; j=j+1) begin
+        assign mantissa_out[(BIT_WIDTH-1)-j] = extended_mantissa[shiftNum+j];
+    end
+    //assign mantissa_out = extended_mantissa[shiftNum -: BIT_WIDTH];
+    
+    LeadingZeroCount #(.BIT_WIDTH(BIT_WIDTH)) ldz(.in(mantissa_in), .out(shiftNum));
 
 endmodule

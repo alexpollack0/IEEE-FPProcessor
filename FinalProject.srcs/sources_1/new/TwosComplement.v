@@ -1,21 +1,16 @@
 `timescale 1ns / 1ps
 
-module TwosComplement (
-    input [2**SIZE-1:0] in,
-    output [2**SIZE-1:0] out
+module TwosComplement #(BIT_WIDTH=1) (
+    input [BIT_WIDTH-1:0] in,
+    output [BIT_WIDTH-1:0] out
     );
 
-    parameter SIZE = 0;
+    wire [BIT_WIDTH-1:0] in_inv;
 
-    wire [2**SIZE - 1:0] in_inv;
-    wire [2**SIZE - 1:0] bVal;
-    assign bVal = 1'b1;
-
-    genvar i;
-    for (i = 0; i < 2**SIZE; i = i+1) begin
+    for (genvar i = 0; i < BIT_WIDTH; i = i+1) begin
         assign in_inv[i] = !in[i];
     end
 
-    VariableCLA #(.SIZE(SIZE)) adder (.a(in_inv), .b(bVal), .c_in(1'b0), .s(out));
+    VariableCLA #(.SIZE($clog2(BIT_WIDTH))) adder(.a({2**($clog2(BIT_WIDTH)), in_inv}), .b({{2**($clog2(BIT_WIDTH))-1{1'b0}}, 1'b1}), .c_in(1'b0), .s(out));
 
 endmodule

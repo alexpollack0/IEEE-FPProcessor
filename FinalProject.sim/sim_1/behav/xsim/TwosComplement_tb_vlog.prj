@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../FinalProject.srcs/sources_1/new/TwosComplement.v" \
+"../../../../FinalProject.srcs/sources_1/new/VariableCLA.v" \
+"../../../../FinalProject.srcs/sources_1/imports/new/cell_a.v" \
+"../../../../FinalProject.srcs/sources_1/imports/new/cell_b.v" \
+"../../../../FinalProject.srcs/sim_1/new/TwosComplement_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
