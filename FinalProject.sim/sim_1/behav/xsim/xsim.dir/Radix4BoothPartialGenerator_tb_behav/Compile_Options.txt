@@ -1,0 +1,1 @@
+-wto "4bc6fc2870ca4ca3b8e84e4a7b106922" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "Radix4BoothPartialGenerator_tb_behav" "xil_defaultlib.Radix4BoothPartialGenerator_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

@@ -4,10 +4,10 @@ module TwosComplement_tb(
 
     );
     
-    reg signed [7:0] a;
-    wire signed [7:0] b;
+    reg signed [9:0] a;
+    wire signed [9:0] b;
     
-    TwosComplement #(.BIT_WIDTH(8)) tbb(.in(a), .out(b));
+    TwosComplement #(.BIT_WIDTH(10)) tbb(.in(a), .out(b));
     
     initial begin        
         for (a = -127; a < 128; a=a+1) begin
