@@ -1,4 +1,0 @@
-Running: xsim.dir/Radix4BoothPartialGenerator_tb_behav/xsimk -simmode gui -wdb Radix4BoothPartialGenerator_tb_behav.wdb -simrunnum 0 -socket 58281
-Design successfully loaded
-Design Loading Memory Usage: 32976 KB (Peak: 33032 KB)
-Design Loading CPU Usage: 130 ms
