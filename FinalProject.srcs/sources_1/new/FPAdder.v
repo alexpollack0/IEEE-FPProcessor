@@ -14,52 +14,71 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
     // Values to extract in INIT
     reg aSign, bSign;
     reg [7:0] aExp, bExp;
-    reg [22:0] aFract, bFract;
-    reg [31:0] bFractComp;
+    reg [23:0] aFract, bFract;
+    wire [23:0] bFractComp;
 
     reg tempSign;
     reg [7:0] tempExp;
-    reg [22:0] tempFract;
+    reg [23:0] tempFract;
 
     reg swapped;
     reg setComp;
-    reg [22:0] shiftRegB;
-    reg [22:0] shiftedOut; // TODO: Determine width
-    reg [31:0] regSTemp;
-    reg [22:0] regS;
-    reg [22:0] regSTwosComp;
-    reg [22:0] regFiveS;
-    reg [22:0] normalizedFiveS;
-    wire [5:0] fiveBitShift;
-    reg fiveCOut;
+    reg [23:0] shiftRegB;
+    wire signed [24:0] compShiftRegB;
+    reg signed [47:0] shiftedOut; 
+    wire [47:0] compShiftedOut;
+    wire [31:0] regSTemp;
+    reg [23:0] regS;
+    wire [23:0] regSTwosComp;
+    reg [23:0] regFiveS;
+    wire [23:0] normalizedFiveS;
+    wire [4:0] fiveBitShift;
+    wire fiveCOut;
     wire roundCOut;
+    wire [7:0] subOutExp;
 
-    reg d, totalShift; // TODO: Determine width
+    wire [7:0] d; 
     reg guard, round, sticky;
     reg fiveLeft;
 
     reg [3:0] eightCase;
     
-    reg [31:0] roundedVal;
+    wire [31:0] roundedVal;
+    
+    wire [31:0] incOutExp;
+    wire cTrash;
 
     localparam ADD = 1'b0, SUB = 1'b1;
 
-    localparam INIT = 3'b000, SWAP_COMP = 3'b001, SHIFTB = 3'b010, SHIFT_DIRECT = 3'b011,
+    localparam INIT = 3'b000, SWAP_COMP = 3'b001, SHIFTB = 3'b010, NORM = 3'b011,
                 ADD_SHIFT = 3'b100, ADJUST =3'b101, ROUND_COMP = 3'b110, DONE = 3'b111;
 
-    TwosComplement #(.SIZE(5)) twoB(.in({9'b0, bFract}), .out(bFractComp));
-    VariableCLA #(.SIZE(5)) fourS(.a({9'b0, aFract}), .b({9'b0, aFract}), .c_in(1'b0), .s(regSTemp), .c_out(fiveCOut));
-    TwosComplement #(.SIZE(5)) fourComp(.in({9'b0, regS}), .out({9'b0, regSTwosComp}));
-    NormalizeReg fiveNormalize(.pre(regFiveS), .res(normalizedFiveS), .shiftNum(fiveBitShift));
-    VariableCLA #(.SIZE(5)) sevenRound(.a({9'b0, regFiveS}), .b({31'b0, 1'b1}), .c_in(1'b0), .s(roundedVal), .c_out(roundCOut));
-
-    always @(posedge clk or negedge reset) begin
+    TwosComplement #(.BIT_WIDTH(24)) twoB(.in(bFract), .out(bFractComp));
+    TwosComplement #(.BIT_WIDTH(25)) compShift(.in({1'b0, bFract}), .out(compShiftRegB));
+    TwosComplement #(.BIT_WIDTH(48)) compShiftOut(.in({22'b0, shiftedOut}), .out(compShiftedOut));
+    
+    VariableCLA #(.SIZE(5)) fourS(.a({8'b0, shiftRegB}), .b({8'b0, aFract}), .c_in(1'b0), .s(regSTemp), .c_out(fiveCOut));
+    assign fiveCOut = regSTemp[24];
+    
+    
+    TwosComplement #(.BIT_WIDTH(24)) fourComp(.in(regSTemp[23:0]), .out(regSTwosComp));
+    
+    NormalizeReg #(.BIT_WIDTH(24))fiveNormalize(.mantissa_in(regS), .mantissa_out(normalizedFiveS), .shiftNum(fiveBitShift));
+    
+    VariableCLA #(.SIZE(5)) sevenRound(.a({8'b0, regFiveS}), .b({31'b0, 1'b1}), .c_in(1'b0), .s(roundedVal), .c_out(roundCOut));
+    
+    VariableCLA #(.SIZE(5)) incOne(.a({24'b0, outExp}), .b({31'b0, 1'b1}), .c_in(1'b0), .s(incOutExp), .c_out(cTrash));
+    VariableCLA #(.SIZE(3)) expDiff(.a(aExp), .b(~bExp), .c_in(1'b1), .s(d), .c_out(cTrash));
+    VariableCLA #(.SIZE(3)) subExp(.a(outExp), .b(~{3'b0,fiveBitShift}), .c_in(1'b1), .s(subOutExp), .c_out(cTrash));
+    
+    always @(negedge clk or negedge reset) begin
 
       if(!reset) begin
         state <= INIT;
       end
       else begin
         state <= next_state;
+        #1 $display("SETTING STATE: %d", state);
       end
 
     end
@@ -75,19 +94,22 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
             INIT: begin
 
               aSign <= a[31];
-              bSign <= b[31];
               aExp <= a[30:23];
               bExp <= b[30:23];
-              aFract <= a[22:0];
-              bFract <= b[22:0];
+              aFract <= {1'b1, a[22:0]};
+              bFract <= {1'b1, b[22:0]};
               next_state <= SWAP_COMP;
 
               outExp <= 0;
+              setComp <= 0;
+              swapped <= 0;
 
               // TODO: Must take twos complement if subtraction
               if(op) begin
-                //bFract <= bFractComp;
-                  bFract = ~(bFract) + 1;
+                  bSign = ~b[31];
+              end
+              else begin
+                  bSign = b[31];
               end
 
             end
@@ -96,6 +118,7 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
             // If the signs of the two exponents differ, replace b's fraction by its twos complement
             // Steps 1, 2
             SWAP_COMP: begin
+             
               if(aExp < bExp) begin
 
                 // Swap signs
@@ -118,125 +141,113 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
               end
 
               // Tentatively set the exponent of the result to e1
-              outSign = aExp;
-
-              if(aSign != bSign) begin
-                bFract = bFractComp[22:0];
-                setComp = 1;
-              end
+              outExp = aExp;
 
               next_state <= SHIFTB;
             end
 
             // Step 3
             SHIFTB: begin
-
-              // Place b mantissa in a p-bit register
-              shiftRegB = bFract;
-
-              // Calculate d (how many bits to shift shiftRegB)
-              d = aExp - bExp; // TODO: Implement this in a proper manner (with a subtractor)
-
-              // Important to store for later
-              totalShift = d;
-
-              if(d > 0) begin
-                next_state = SHIFT_DIRECT;
+              
+              
+              $display("Shifting b by %d", d);
+              
+              if(aSign != bSign) begin
+                $display("compShiftRegB before shifting: %b", compShiftRegB);
+                shiftRegB = compShiftRegB >>> d;
+                shiftedOut = {compShiftRegB, 24'b0};
+                
+                $display("shiftRegB: %b", shiftRegB);
+                $display("shiftedOut: %b", shiftedOut);
               end
               else begin
-                next_state = ADD_SHIFT;
+                shiftRegB = bFract >>> d;
+                shiftedOut = {1'b0, bFract, 24'b0};
               end
+              
+              shiftedOut = shiftedOut >>> d;
+              $display("After shifting shiftedOut: %b", shiftedOut);
 
-            end
-
-            // Step 3 (continued)
-            SHIFT_DIRECT: begin
-
-              shiftedOut = {shiftRegB[0], shiftedOut[21:0]};
-
-              // Shift in 1's if b fraction was completed in Step 2
-              if(setComp) begin
-                shiftRegB = {1'b1, shiftRegB[22:1]};
-              end
-              // Otherwise, shift in 0's
-              else begin
-                shiftRegB = {1'b0, shiftRegB[22:1]};
-              end
-
-              d = d - 1; // TODO: Implement this in a proper manner (with a subtractor)
-              if(d == 0) begin
-                next_state = ADD_SHIFT;
-              end
-              else begin
-                next_state = SHIFT_DIRECT;
-              end
+              next_state = ADD_SHIFT;
 
             end
 
             // Steps 4, 5
             ADD_SHIFT: begin
 
+              $display("Inside ADD_SHIFT");
               // Finish initialization from Step 3
-              sticky = 0;
-
-              for(i = 22; i > totalShift; i = i - 1) begin
-                if(i == 22) begin
-                  guard = shiftedOut[i];
-                end
-                else if(i == 21) begin
-                  round = shiftedOut[i];
-                end
-                else begin
-                  if(shiftedOut[i]) begin
-                    sticky = 1;
-                  end
-                end
-              end
+              next_state <= NORM;
+              
+              guard = shiftedOut[23];
+              round = shiftedOut[22];
+              sticky = |shiftedOut[21:0];
 
               // Step 4
 
+                
+              $display("regSTemp: %b", regSTemp);
+
               // Add aFract to shiftRegB (call output register regS)
-              regS = regSTemp[22:0];
+              regS = regSTemp[23:0];
+
+              $display("regS: %b", regS);
 
               // This can only possibly be hit when totalShift = 0
-              if(aSign != bSign && regS[22] && !fiveCOut) begin
+              if(aSign != bSign && regS[22] && !regSTemp[24]) begin
                 regS = regSTwosComp;
+                $display("Replaced regS with regSTwosComp");
+                bSign = aSign;
+                setComp = 1;
               end
 
+              $display("Carry out: %b", fiveCOut);
+              
+
+            end
+            
+            NORM: begin
+            
               // Step 5
-              if(aSign == bSign && !fiveCOut) begin
-                regFiveS = {1'b1, regS[22:1]};
+              if(aSign == bSign && regSTemp[24]) begin
+                $display("Carry out, shifting in 1");
+                regFiveS = {1'b1, regS[23:1]};
+                $display("regFiveS: %b", regFiveS);
                 fiveLeft = 0;
               end
-              else if(fiveCOut) begin
-                if(!regFiveS[22]) begin
-                  regFiveS = normalizedFiveS;
-                end
-
+              else begin
+                $display("No carry out, using normalized version - %b", normalizedFiveS);
+                $display("Guard: %b", guard);
+                $display("Shifted left by %d", fiveBitShift);
+                regFiveS = normalizedFiveS;
+                regFiveS[fiveBitShift-1] = guard;
                 fiveLeft = 1;
               end
 
               // Adjust the exponent of the result
               if(fiveLeft) begin
-                outExp = -fiveBitShift;
+                outExp = subOutExp;
               end
               else begin
-                outExp = fiveBitShift;
+                outExp = incOutExp[7:0];
+                $display("outExp incrementing by 1 - %b", outExp);
               end
 
+              $display("Next state set to ADJUST");
               next_state <= ADJUST;
-
+            
             end
 
             // Step 6
             ADJUST: begin
 
+              $display("Inside ADJUST");
               if(fiveLeft) begin
                 if(fiveBitShift > 1) begin
                   round = 0;
                   sticky = 0;
                 end
-                else begin
+                else if(fiveBitShift == 0) begin
                   round = guard;
                   sticky = round | sticky;
                 end
@@ -253,10 +264,13 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
             // Steps 7, 8
             ROUND_COMP: begin
 
+              $display("Inside ROUND_COMP");
+              $display("Output fract value pre round: %b", regFiveS);
               // Step 7: Round to nearest even
-              if((round && regFiveS[22]) || (round && sticky)) begin
+              if((round && regFiveS[23]) || (round && sticky)) begin
+                $display("Rounding baby!");
                 // Add 1
-                regFiveS <= roundedVal[22:0];
+                regFiveS <= roundedVal[23:0];
               end
 
               // Step 8
@@ -283,7 +297,8 @@ module FPAdder(reset, clk, a, b, op, outSign, outExp, outFract);
             end
 
             DONE: begin
-              outFract <= regFiveS;
+              $display("Inside DONE");
+              outFract <= regFiveS[22:0];
             end
 
         endcase
