@@ -1,14 +1,41 @@
 Vivado Simulator 2018.3
 Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
-Running: /tools/Xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/xelab -wto 4bc6fc2870ca4ca3b8e84e4a7b106922 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot NormalizeReg_tb_behav xil_defaultlib.NormalizeReg_tb xil_defaultlib.glbl -log elaborate.log 
+Running: /tools/Xilinx/Vivado/2018.3/bin/unwrapped/lnx64.o/xelab -wto 4bc6fc2870ca4ca3b8e84e4a7b106922 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot FPMultiplier_tb_behav xil_defaultlib.FPMultiplier_tb xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
+WARNING: [VRFC 10-3091] actual bit length 25 differs from formal bit length 27 for port 'out' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/Radix4BoothPartialGenerator.v:25]
+WARNING: [VRFC 10-3091] actual bit length 27 differs from formal bit length 32 for port 's' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:18]
+WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 16 for port 'a' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v:123]
+WARNING: [VRFC 10-3091] actual bit length 52 differs from formal bit length 48 for port 'mantissa_in' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v:127]
+WARNING: [VRFC 10-3091] actual bit length 6 differs from formal bit length 8 for port 'a' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v:128]
+WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 8 for port 'a' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v:131]
+WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 8 for port 'exponent_in' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v:134]
+WARNING: [VRFC 10-3091] actual bit length 25 differs from formal bit length 32 for port 's' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/MultRound.v:19]
+WARNING: [VRFC 10-3091] actual bit length 9 differs from formal bit length 8 for port 's' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/MultRound.v:20]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.LeadingZeroCount(BIT_WIDTH=24)
-Compiling module xil_defaultlib.NormalizeReg(BIT_WIDTH=24)
-Compiling module xil_defaultlib.NormalizeReg_tb
+Compiling module xil_defaultlib.cell_a
+Compiling module xil_defaultlib.cell_b
+Compiling module xil_defaultlib.VariableCLA(SIZE=5)
+Compiling module xil_defaultlib.TwosComplement(BIT_WIDTH=26)
+Compiling module xil_defaultlib.Radix4BoothPartialGenerator
+Compiling module xil_defaultlib.FullAdder
+Compiling module xil_defaultlib.CSA(SIZE=28)
+Compiling module xil_defaultlib.CSA(SIZE=33)
+Compiling module xil_defaultlib.CSA(SIZE=31)
+Compiling module xil_defaultlib.CSA(SIZE=39)
+Compiling module xil_defaultlib.CSA(SIZE=44)
+Compiling module xil_defaultlib.VariableCLA(SIZE=3)
+Compiling module xil_defaultlib.VariableCLA_default
+Compiling module xil_defaultlib.CLA44
+Compiling module xil_defaultlib.WallaceTree
+Compiling module xil_defaultlib.VariableCLA(SIZE=4)
+Compiling module xil_defaultlib.LeadingZeroCount(BIT_WIDTH=48)
+Compiling module xil_defaultlib.NormalizeReg(BIT_WIDTH=48)
+Compiling module xil_defaultlib.MultRound
+Compiling module xil_defaultlib.FPMultiplier
+Compiling module xil_defaultlib.FPMultiplier_tb
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot NormalizeReg_tb_behav
+Built simulation snapshot FPMultiplier_tb_behav
