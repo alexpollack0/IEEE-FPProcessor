@@ -2,3 +2,6 @@ Running: xsim.dir/FPMultiplier_tb_behav/xsimk -simmode gui -wdb FPMultiplier_tb_
 Design successfully loaded
 Design Loading Memory Usage: 33852 KB (Peak: 33860 KB)
 Design Loading CPU Usage: 20 ms
+Simulation completed
+Simulation Memory Usage: 120248 KB (Peak: 181124 KB)
+Simulation CPU Usage: 20 ms

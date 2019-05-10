@@ -47,7 +47,7 @@ module FPMultiplier(
          *  Stage 1
          */
         // Calculate sign
-        sign[0] = multiplier[31] ^ multiplicand[31];
+        sign[0] <= multiplier[31] ^ multiplicand[31];
         // Store partials
         partials[0] <= p0;
         partials[1] <= p1;
