@@ -2,3 +2,6 @@ Running: xsim.dir/WallaceTree_tb_behav/xsimk -simmode gui -wdb WallaceTree_tb_be
 Design successfully loaded
 Design Loading Memory Usage: 33496 KB (Peak: 33504 KB)
 Design Loading CPU Usage: 10 ms
+Simulation completed
+Simulation Memory Usage: 119792 KB (Peak: 180768 KB)
+Simulation CPU Usage: 50 ms

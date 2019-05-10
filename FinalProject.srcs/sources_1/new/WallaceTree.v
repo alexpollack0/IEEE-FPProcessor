@@ -13,7 +13,8 @@ module WallaceTree(
     input [25:0] p9,
     input [25:0] p10,
     input [25:0] p11,
-    output [50:0] s
+    input [25:0] p12,
+    output [51:0] s
     );
     
     assign s[1:0] = p0[1:0];
@@ -78,6 +79,11 @@ module WallaceTree(
     
     CSA #(.SIZE(44)) csa40(.X({s30[42],s30}), .Y(c30), .Z({c21,13'b0}), .PS({s40,s[6]}), .SC(c40));
     
-    CLA44 cla (.a({s40[42],s40}), .b(c40), .s(s[50:7]));
+    wire [42:0] s50;
+    wire [43:0] c50;
+    
+    CSA #(.SIZE(44)) csa50(.X({s40[42],s40}), .Y(c40), .Z({p12[25],p12,17'b0}), .PS({s50,s[7]}), .SC(c50));
+    
+    CLA44 cla (.a({s50[42],s50}), .b(c50), .s(s[51:8]));
     
 endmodule

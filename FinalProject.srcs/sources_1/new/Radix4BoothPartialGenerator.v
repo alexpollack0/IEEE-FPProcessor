@@ -14,24 +14,25 @@ module Radix4BoothPartialGenerator(
     output [25:0] p8,
     output [25:0] p9,
     output [25:0] p10,
-    output [25:0] p11
+    output [25:0] p11,
+    output [25:0] p12
     );
     
-    wire [24:0] multiplier_extended;
+    wire [26:0] multiplier_extended;
     wire [24:0] multiplicand_complement;
     
-    assign multiplier_extended = {multiplier, 1'b0};
-    TwosComplement #(.BIT_WIDTH(24)) neg(.in(multiplicand), .out(multiplicand_complement));
+    assign multiplier_extended = {2'b0, multiplier, 1'b0};
+    TwosComplement #(.BIT_WIDTH(26)) neg(.in({2'b0, multiplicand}), .out(multiplicand_complement));
     
-    reg [25:0] partials [11:0]; 
+    reg [25:0] partials [12:0]; 
     
-    for (genvar i = 0; i < 12; i=i+1) begin
+    for (genvar i = 0; i < 13; i=i+1) begin
         always @(*) begin
             case (multiplier_extended[2*i +: 3])
             3'b000: partials[i] <= 25'b0;
-            3'b001: partials[i] <= {{2{multiplicand[23]}}, multiplicand};
-            3'b010: partials[i] <= {{2{multiplicand[23]}}, multiplicand};
-            3'b011: partials[i] <= {multiplicand[23], multiplicand, 1'b0};
+            3'b001: partials[i] <= {2'b0, multiplicand};
+            3'b010: partials[i] <= {2'b0, multiplicand};
+            3'b011: partials[i] <= {1'b0, multiplicand, 1'b0};
             3'b100: partials[i] <= {multiplicand_complement, 1'b0};
             3'b101: partials[i] <= {multiplicand_complement[24], multiplicand_complement};
             3'b110: partials[i] <= {multiplicand_complement[24], multiplicand_complement};
@@ -52,4 +53,5 @@ module Radix4BoothPartialGenerator(
     assign p9  = partials[9];
     assign p10 = partials[10];
     assign p11 = partials[11];  
+    assign p12 = partials[12];  
 endmodule

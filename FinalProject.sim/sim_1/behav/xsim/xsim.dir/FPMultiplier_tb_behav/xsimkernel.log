@@ -1,0 +1,4 @@
+Running: xsim.dir/FPMultiplier_tb_behav/xsimk -simmode gui -wdb FPMultiplier_tb_behav.wdb -simrunnum 0 -socket 52763
+Design successfully loaded
+Design Loading Memory Usage: 33852 KB (Peak: 33860 KB)
+Design Loading CPU Usage: 20 ms

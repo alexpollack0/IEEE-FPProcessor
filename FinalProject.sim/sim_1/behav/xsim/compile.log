@@ -2,8 +2,16 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProce
 INFO: [VRFC 10-311] analyzing module CLA44
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/CSA.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module CSA
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPMultiplier.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FPMultiplier
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FullAdder.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module FullAdder
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/LeadingZeroCount.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LeadingZeroCount
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/MultRound.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MultRound
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/NormalizeReg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module NormalizeReg
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/Radix4BoothPartialGenerator.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module Radix4BoothPartialGenerator
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v" into library xil_defaultlib
@@ -16,5 +24,5 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProce
 INFO: [VRFC 10-311] analyzing module cell_a
 INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/imports/new/cell_b.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module cell_b
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sim_1/new/WallaceTree_tb.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module WallaceTree_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sim_1/new/FPMultiplier_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FPMultiplier_tb
