@@ -6,4 +6,4 @@
 # Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log FPMultiplier.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPMultiplier.tcl
+vivado -log FPProcessor.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPProcessor.tcl

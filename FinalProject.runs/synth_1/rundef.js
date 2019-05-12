@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log FPMultiplier.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPMultiplier.tcl" );
+         "-log FPProcessor.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPProcessor.tcl" );
 
 
 

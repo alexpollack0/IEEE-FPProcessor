@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log FPMultiplier.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPMultiplier.tcl
+EAStep vivado -log FPProcessor.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source FPProcessor.tcl
