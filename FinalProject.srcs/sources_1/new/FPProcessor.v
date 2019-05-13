@@ -34,6 +34,8 @@ reg [2:0] tx_pointer;
 wire [7:0] out_buffer [3:0];
   
 reg tst;
+
+reg [7:0] counter;
   
 /*************************************************************/
 //                  RS-232 TRANCEIVER                        //
@@ -59,6 +61,8 @@ uart_transceiver transceiver(
 //                  Data Collection                          //
 /*************************************************************/
 always @(posedge clk) begin
+    counter = counter + 1;
+    
     if (rst) begin
         data_cnt <= 0;
         selection <=0;
@@ -69,7 +73,7 @@ always @(posedge clk) begin
         tst <= 0;
     end else if (rx_irq) begin
         // Shift new data into recv_data register
-        recv_data <= {recv_data[71:8], rx_data};
+        recv_data <= {recv_data[63:0], rx_data};
         data_cnt <= data_cnt + 1; // TODO replace with CLA    
     end else if (data_cnt == 9) begin
         case (recv_data[71:64])
@@ -92,9 +96,9 @@ always @(posedge clk) begin
         count <= 0;
         start_count <= 1;
     end else if (start_count) begin
-        if (count < 10) count = count + 1;
-        if (count == 10) start_count <= 0;
-    end else if (count == 10) begin        
+        if (count < 160) count = count + 1;
+        if (count == 160) start_count <= 0;
+    end else if (count == 160) begin        
         count = 0;
         tx_pointer = 0;
         tx_wr = 1;
@@ -119,8 +123,8 @@ assign tx_data = out_buffer[tx_pointer];
 
 assign LEDS = addsubResult[31:16];
 
-FPAdder addsub(.reset(rst),.clk(clk),.a(input_a),.b(input_b),.op(selection[0]),.outSign(addsubResult[31]),.outExp(addsubResult[30:23]),.outFract(addsubResult[22:0]));
+FPAdder addsub(.reset(rst),.clk(counter[3]),.a(input_a),.b(input_b),.op(selection[0]),.outSign(addsubResult[31]),.outExp(addsubResult[30:23]),.outFract(addsubResult[22:0]));
 
-//FPMultiplier mult(.clk(clk),.reset(rst),.multiplier(input_a),.multiplicand(input_b),.result(multResult));
+//FPMultiplier mult(.clk(clk),.reset(rst),.multiplier(input_a),.multiplicand(input_b),.result(addsubResult));
 
 endmodule

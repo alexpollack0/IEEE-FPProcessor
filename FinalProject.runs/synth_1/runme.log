@@ -14,9 +14,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 17068 
+INFO: Helper process launched with PID 8090 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1347.984 ; gain = 0.000 ; free physical = 1594 ; free virtual = 27458
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1347.988 ; gain = 0.000 ; free physical = 7933 ; free virtual = 32139
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'FPProcessor' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPProcessor.v:3]
 	Parameter clk_freq bound to: 100000000 - type: integer 
@@ -27,7 +27,7 @@ INFO: [Synth 8-6157] synthesizing module 'FPAdder' [/home/npalmer/ENEE359F/IEEE-
 	Parameter ADD bound to: 1'b0 
 	Parameter SUB bound to: 1'b1 
 	Parameter INIT bound to: 3'b000 
-	Parameter SWAP_COMP bound to: 3'b001 
+	Parameter SWAP bound to: 3'b001 
 	Parameter SHIFTB bound to: 3'b010 
 	Parameter NORM bound to: 3'b011 
 	Parameter ADD_SHIFT bound to: 3'b100 
@@ -45,12 +45,12 @@ INFO: [Synth 8-6155] done synthesizing module 'cell_b' (3#1) [/home/npalmer/ENEE
 INFO: [Synth 8-6155] done synthesizing module 'VariableCLA' (4#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/VariableCLA.v:3]
 WARNING: [Synth 8-689] width (25) of port connection 's' does not match port width (32) of module 'VariableCLA' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:18]
 INFO: [Synth 8-6155] done synthesizing module 'TwosComplement' (5#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:3]
-WARNING: [Synth 8-689] width (24) of port connection 'out' does not match port width (25) of module 'TwosComplement' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:56]
+WARNING: [Synth 8-689] width (24) of port connection 'out' does not match port width (25) of module 'TwosComplement' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:58]
 INFO: [Synth 8-6157] synthesizing module 'TwosComplement__parameterized0' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:3]
 	Parameter BIT_WIDTH bound to: 25 - type: integer 
 WARNING: [Synth 8-689] width (26) of port connection 's' does not match port width (32) of module 'VariableCLA' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:18]
 INFO: [Synth 8-6155] done synthesizing module 'TwosComplement__parameterized0' (5#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:3]
-WARNING: [Synth 8-689] width (25) of port connection 'out' does not match port width (26) of module 'TwosComplement__parameterized0' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:57]
+WARNING: [Synth 8-689] width (25) of port connection 'out' does not match port width (26) of module 'TwosComplement__parameterized0' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:59]
 INFO: [Synth 8-6157] synthesizing module 'TwosComplement__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:3]
 	Parameter BIT_WIDTH bound to: 48 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'VariableCLA__parameterized0' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/VariableCLA.v:3]
@@ -58,9 +58,9 @@ INFO: [Synth 8-6157] synthesizing module 'VariableCLA__parameterized0' [/home/np
 INFO: [Synth 8-6155] done synthesizing module 'VariableCLA__parameterized0' (5#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/VariableCLA.v:3]
 WARNING: [Synth 8-689] width (49) of port connection 's' does not match port width (64) of module 'VariableCLA__parameterized0' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:18]
 INFO: [Synth 8-6155] done synthesizing module 'TwosComplement__parameterized1' (5#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/TwosComplement.v:3]
-WARNING: [Synth 8-689] width (70) of port connection 'in' does not match port width (48) of module 'TwosComplement__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:58]
-WARNING: [Synth 8-689] width (48) of port connection 'out' does not match port width (49) of module 'TwosComplement__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:58]
-WARNING: [Synth 8-689] width (24) of port connection 'out' does not match port width (25) of module 'TwosComplement' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:64]
+WARNING: [Synth 8-689] width (70) of port connection 'in' does not match port width (48) of module 'TwosComplement__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:60]
+WARNING: [Synth 8-689] width (48) of port connection 'out' does not match port width (49) of module 'TwosComplement__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:60]
+WARNING: [Synth 8-689] width (24) of port connection 'out' does not match port width (25) of module 'TwosComplement' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:62]
 INFO: [Synth 8-6157] synthesizing module 'NormalizeReg' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/NormalizeReg.v:3]
 	Parameter BIT_WIDTH bound to: 24 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'LeadingZeroCount' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/LeadingZeroCount.v:3]
@@ -70,15 +70,22 @@ INFO: [Synth 8-6155] done synthesizing module 'NormalizeReg' (7#1) [/home/npalme
 INFO: [Synth 8-6157] synthesizing module 'VariableCLA__parameterized1' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/VariableCLA.v:3]
 	Parameter SIZE bound to: 3 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'VariableCLA__parameterized1' (7#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/VariableCLA.v:3]
-WARNING: [Synth 8-6014] Unused sequential element tempSign_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:125]
-WARNING: [Synth 8-6014] Unused sequential element tempExp_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:130]
-WARNING: [Synth 8-6014] Unused sequential element tempFract_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:135]
-WARNING: [Synth 8-6014] Unused sequential element eightCase_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:278]
+WARNING: [Synth 8-6090] variable 'next_state' is written by both blocking and non-blocking assignments, entire logic could be removed [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:322]
+WARNING: [Synth 8-6014] Unused sequential element aPosInf_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:110]
+WARNING: [Synth 8-6014] Unused sequential element aNegInf_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:111]
+WARNING: [Synth 8-6014] Unused sequential element bPosInf_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:128]
+WARNING: [Synth 8-6014] Unused sequential element bNegInf_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:129]
+WARNING: [Synth 8-6014] Unused sequential element inf_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:143]
+WARNING: [Synth 8-6014] Unused sequential element tempSign_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:332]
+WARNING: [Synth 8-6014] Unused sequential element tempExp_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:337]
+WARNING: [Synth 8-6014] Unused sequential element tempFract_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:342]
+WARNING: [Synth 8-6014] Unused sequential element eightCase_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:452]
 INFO: [Synth 8-6155] done synthesizing module 'FPAdder' (8#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPAdder.v:3]
-WARNING: [Synth 8-6014] Unused sequential element tst_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPProcessor.v:69]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPProcessor.v:70]
+WARNING: [Synth 8-6014] Unused sequential element tst_reg was removed.  [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPProcessor.v:73]
 INFO: [Synth 8-6155] done synthesizing module 'FPProcessor' (9#1) [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/new/FPProcessor.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1366.199 ; gain = 18.215 ; free physical = 1599 ; free virtual = 27464
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1367.203 ; gain = 19.215 ; free physical = 7935 ; free virtual = 32141
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -91,10 +98,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1366.199 ; gain = 18.215 ; free physical = 1600 ; free virtual = 27465
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1367.203 ; gain = 19.215 ; free physical = 7936 ; free virtual = 32142
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1366.199 ; gain = 18.215 ; free physical = 1600 ; free virtual = 27465
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1367.203 ; gain = 19.215 ; free physical = 7936 ; free virtual = 32142
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -105,30 +112,30 @@ Parsing XDC File [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/cons
 Finished Parsing XDC File [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/constrs_1/new/FPProcessor.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/constrs_1/new/FPProcessor.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/FPProcessor_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/FPProcessor_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1721.605 ; gain = 0.000 ; free physical = 1356 ; free virtual = 27220
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7692 ; free virtual = 31898
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1721.605 ; gain = 0.000 ; free physical = 1358 ; free virtual = 27222
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7693 ; free virtual = 31899
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1721.605 ; gain = 0.000 ; free physical = 1358 ; free virtual = 27222
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1721.605 ; gain = 0.000 ; free physical = 1358 ; free virtual = 27222
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7693 ; free virtual = 31899
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7693 ; free virtual = 31899
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1427 ; free virtual = 27292
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7763 ; free virtual = 31970
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35ticpg236-1L
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1427 ; free virtual = 27292
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7763 ; free virtual = 31970
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1427 ; free virtual = 27292
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7766 ; free virtual = 31973
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "rx_done" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "rx_bitcount" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
@@ -136,39 +143,28 @@ INFO: [Synth 8-5544] ROM "tx_done" won't be mapped to Block RAM because address 
 INFO: [Synth 8-5544] ROM "tx_done" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "uart_tx" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'FPAdder'
-INFO: [Synth 8-5546] ROM "round" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "outSign" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "aExp" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "round" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "outExp" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "shiftRegB" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "shiftedOut" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "guard" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "regFiveS" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "outSign" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "outFract" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "outExp0" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "data_cnt" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "selection" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "tx_wr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5546] ROM "count" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "start_count" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-                    INIT |                              000 |                              000
-               SWAP_COMP |                              001 |                              001
-                  SHIFTB |                              010 |                              010
-               ADD_SHIFT |                              011 |                              100
-                    NORM |                              100 |                              011
-                  ADJUST |                              101 |                              101
-              ROUND_COMP |                              110 |                              110
-                    DONE |                              111 |                              111
+                    INIT |                               00 |                              000
+                  ADJUST |                               01 |                              101
+              ROUND_COMP |                               10 |                              110
+                    DONE |                               11 |                              111
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'FPAdder'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1419 ; free virtual = 27285
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7756 ; free virtual = 31964
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -183,8 +179,9 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input     32 Bit       Adders := 1     
 	   2 Input     16 Bit       Adders := 2     
-	   2 Input      6 Bit       Adders := 23    
-	   2 Input      4 Bit       Adders := 6     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 46    
+	   2 Input      4 Bit       Adders := 5     
 	   2 Input      3 Bit       Adders := 1     
 +---XORs : 
 	   3 Input      1 Bit         XORs := 272   
@@ -195,32 +192,32 @@ Detailed RTL Component Info :
 	               24 Bit    Registers := 5     
 	               23 Bit    Registers := 1     
 	               16 Bit    Registers := 1     
-	                8 Bit    Registers := 6     
-	                5 Bit    Registers := 1     
+	                8 Bit    Registers := 7     
 	                4 Bit    Registers := 5     
 	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 18    
 +---Muxes : 
 	   2 Input     48 Bit        Muxes := 1     
-	   2 Input     24 Bit        Muxes := 4     
-	   8 Input     24 Bit        Muxes := 3     
-	   2 Input     16 Bit        Muxes := 3     
+	   2 Input     24 Bit        Muxes := 6     
+	   4 Input     24 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 2     
+	   4 Input     23 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 4     
 	   2 Input      8 Bit        Muxes := 6     
-	   8 Input      8 Bit        Muxes := 3     
 	   4 Input      8 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 7     
+	   2 Input      5 Bit        Muxes := 2     
 	   5 Input      4 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 2     
-	   4 Input      3 Bit        Muxes := 1     
-	   8 Input      3 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 3     
+	   4 Input      3 Bit        Muxes := 2     
 	   2 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 5     
+	   4 Input      2 Bit        Muxes := 1     
 	   3 Input      2 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 43    
-	   4 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 15    
 	   3 Input      1 Bit        Muxes := 3     
-	   8 Input      1 Bit        Muxes := 22    
+	   8 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -231,25 +228,24 @@ Hierarchical RTL Component report
 Module FPProcessor 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      4 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               72 Bit    Registers := 1     
 	               32 Bit    Registers := 2     
-	                5 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
 	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 2     
 +---Muxes : 
 	   4 Input      8 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 2     
-	   2 Input      5 Bit        Muxes := 6     
 	   2 Input      4 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 1     
 	   3 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 14    
+	   2 Input      1 Bit        Muxes := 6     
 Module uart_transceiver 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -296,14 +292,17 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 9     
 +---Muxes : 
 	   2 Input     48 Bit        Muxes := 1     
-	   2 Input     24 Bit        Muxes := 4     
-	   8 Input     24 Bit        Muxes := 3     
-	   2 Input      8 Bit        Muxes := 2     
-	   8 Input      8 Bit        Muxes := 3     
-	   8 Input      3 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 4     
-	   4 Input      1 Bit        Muxes := 1     
-	   8 Input      1 Bit        Muxes := 22    
+	   2 Input     24 Bit        Muxes := 6     
+	   4 Input     24 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 2     
+	   4 Input     23 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 3     
+	   4 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 12    
+	   8 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 14    
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -320,12 +319,136 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
-INFO: [Synth 8-5546] ROM "start_count" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "count" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "tx_wr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\selection_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftedOut_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\shiftRegB_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/fiveLeft_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/guard_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regS_reg[22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/setComp_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/swapped_reg)
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[0]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[1]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[2]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[3]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[4]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[5]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3886] merging instance 'addsub/outExp_reg[6]' (FDE) to 'addsub/outExp_reg[7]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/sticky_reg)
+INFO: [Synth 8-3886] merging instance 'addsub/round_reg' (FDE) to 'addsub/sticky_reg'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/sticky_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[20] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\regFiveS_reg[22] )
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[7]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[15]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[6]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[14]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[5]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[13]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[4]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[12]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[3]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[11]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[2]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[10]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[1]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[9]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[8]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[16]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[17]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[18]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[19]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[20]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3886] merging instance 'addsub/outFract_reg[21]' (FDE) to 'addsub/outFract_reg[22]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (addsub/\outFract_reg[22] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1390 ; free virtual = 27258
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7742 ; free virtual = 31953
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|FPAdder     | outExp     | 32x1          | LUT            | 
+|FPAdder     | outFract   | 32x23         | LUT            | 
+|FPAdder     | outSign    | 32x1          | LUT            | 
+|FPAdder     | outExp     | 32x1          | LUT            | 
+|FPAdder     | outSign    | 32x1          | LUT            | 
++------------+------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -337,13 +460,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1275 ; free virtual = 27143
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7625 ; free virtual = 31835
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1274 ; free virtual = 27142
+Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7625 ; free virtual = 31835
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -354,13 +477,20 @@ Report RTL Partitions:
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin s[24] with 1st driver pin 'addsub/fourS/row[3].col[0].b/c_j__0/O' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/imports/new/cell_b.v:38]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin s[24] with 2nd driver pin 'GND' [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/imports/new/cell_b.v:38]
-CRITICAL WARNING: [Synth 8-6858] multi-driven net s[24] is connected to at least one constant driver which has been preserved, other driver is ignored [/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.srcs/sources_1/imports/new/cell_b.v:38]
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\addsub/shiftRegB_reg[23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\addsub/regS_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_reg_reg[6] )
+INFO: [Synth 8-3886] merging instance 'transceiver/tx_reg_reg[5]' (FDSE) to 'transceiver/tx_reg_reg[6]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_reg_reg[4] )
+INFO: [Synth 8-3886] merging instance 'transceiver/tx_reg_reg[3]' (FDSE) to 'transceiver/tx_reg_reg[6]'
+INFO: [Synth 8-3886] merging instance 'transceiver/tx_reg_reg[2]' (FDSE) to 'transceiver/tx_reg_reg[4]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_reg_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_bitcount_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_reg_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_bitcount_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_bitcount_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\transceiver/tx_bitcount_reg[2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\transceiver/uart_tx_reg )
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7623 ; free virtual = 31833
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -384,7 +514,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -397,7 +527,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -409,25 +539,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -445,50 +575,48 @@ Report Cell Usage:
 +------+-------+------+
 |1     |BUFG   |     1|
 |2     |CARRY4 |     4|
-|3     |LUT1   |    20|
-|4     |LUT2   |    41|
-|5     |LUT3   |    44|
-|6     |LUT4   |    34|
-|7     |LUT5   |    59|
-|8     |LUT6   |    91|
-|9     |MUXF7  |    25|
-|10    |FDCE   |     3|
-|11    |FDRE   |   183|
-|12    |FDSE   |     2|
-|13    |IBUF   |     3|
-|14    |OBUF   |    17|
+|3     |LUT1   |    18|
+|4     |LUT2   |    12|
+|5     |LUT3   |    11|
+|6     |LUT4   |    24|
+|7     |LUT5   |    18|
+|8     |LUT6   |    18|
+|9     |FDCE   |     2|
+|10    |FDRE   |   194|
+|11    |IBUF   |     3|
+|12    |OBUF   |    17|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+--------------+-----------------+------+
 |      |Instance      |Module           |Cells |
 +------+--------------+-----------------+------+
-|1     |top           |                 |   527|
-|2     |  addsub      |FPAdder          |   329|
-|3     |  transceiver |uart_transceiver |   148|
+|1     |top           |                 |   322|
+|2     |  addsub      |FPAdder          |    47|
+|3     |  transceiver |uart_transceiver |   103|
 +------+--------------+-----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1271 ; free virtual = 27139
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7624 ; free virtual = 31834
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 3 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1721.605 ; gain = 18.215 ; free physical = 1322 ; free virtual = 27190
-Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1721.605 ; gain = 373.621 ; free physical = 1322 ; free virtual = 27190
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1723.625 ; gain = 19.215 ; free physical = 7673 ; free virtual = 31883
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1723.625 ; gain = 375.637 ; free physical = 7673 ; free virtual = 31883
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 29 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1737.621 ; gain = 0.000 ; free physical = 1272 ; free virtual = 27140
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7621 ; free virtual = 31831
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-69 Infos, 13 Warnings, 3 Critical Warnings and 0 Errors encountered.
+178 Infos, 20 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1737.621 ; gain = 389.922 ; free physical = 1327 ; free virtual = 27195
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1737.621 ; gain = 0.000 ; free physical = 1327 ; free virtual = 27195
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1723.625 ; gain = 375.922 ; free physical = 7676 ; free virtual = 31886
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1723.625 ; gain = 0.000 ; free physical = 7676 ; free virtual = 31886
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/npalmer/ENEE359F/IEEE-FPProcessor/FinalProject.runs/synth_1/FPProcessor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file FPProcessor_utilization_synth.rpt -pb FPProcessor_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat May 11 19:29:45 2019...
+INFO: [Common 17-206] Exiting Vivado at Mon May 13 10:52:06 2019...
